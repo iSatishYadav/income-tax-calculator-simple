@@ -1,78 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Income Tax Calculator</title>
-    <link href="https://cdn.jsdelivr.net/npm/@shadcn/ui@latest/dist/shadcn.min.css" rel="stylesheet" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f7fafc;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-      }
-      .card {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 1rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 300px;
-      }
-      .card-header {
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-      .tax-result {
-        margin-top: 1rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-      }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/@shadcn/ui/dist/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <div class="card">
-      <div class="card-header">Income Tax Calculator</div>
-      <input id="income" type="number" placeholder="Enter your income" class="input" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
-      <button onclick="calculateTax()" class="button btn-primary" style="width: 100%; padding: 0.75rem;">Calculate Tax</button>
-      <p id="tax-result" class="tax-result"></p>
+      <h2>Income Tax Calculator</h2>
+      <h3>This calculator is for the 2025 new budget announced on 01-Feb-2025 in India</h3>
+      
+      <input class="input" type="number" id="income" placeholder="Enter your income" />
+      <button class="button" onclick="calculateTax()">Calculate Tax</button>
+
+      <p id="taxResult" class="text-center"></p>
     </div>
 
-    <script>
-      const taxSlabs = [
-        { limit: 400000, rate: 0 },
-        { limit: 800000, rate: 0.05 },
-        { limit: 1200000, rate: 0.1 },
-        { limit: 1600000, rate: 0.15 },
-        { limit: 2000000, rate: 0.2 },
-        { limit: 2400000, rate: 0.24 },
-        { limit: Infinity, rate: 0.3 },
-      ];
+    <div class="card">
+      <h3 class="text-center">Tax Slabs</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Income Range (Rs.)</th>
+            <th>Tax Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Up to 4,00,000</td>
+            <td>0%</td>
+          </tr>
+          <tr>
+            <td>4,00,001 - 8,00,000</td>
+            <td>5%</td>
+          </tr>
+          <tr>
+            <td>8,00,001 - 12,00,000</td>
+            <td>10%</td>
+          </tr>
+          <tr>
+            <td>12,00,001 - 16,00,000</td>
+            <td>15%</td>
+          </tr>
+          <tr>
+            <td>16,00,001 - 20,00,000</td>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <td>20,00,001 - 24,00,000</td>
+            <td>24%</td>
+          </tr>
+          <tr>
+            <td>Above 24,00,001</td>
+            <td>30%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      function calculateTax() {
-        const income = parseFloat(document.getElementById('income').value);
-        let tax = 0;
-        let previousLimit = 0;
-
-        if (!isNaN(income) && income > 0) {
-          for (let slab of taxSlabs) {
-            if (income > previousLimit) {
-              let taxableIncome = Math.min(income, slab.limit) - previousLimit;
-              tax += taxableIncome * slab.rate;
-              previousLimit = slab.limit;
-            } else {
-              break;
-            }
-          }
-
-          document.getElementById('tax-result').innerText = `Tax Payable: Rs. ${tax.toFixed(2)}`;
-        } else {
-          document.getElementById('tax-result').innerText = 'Please enter a valid income.';
-        }
-      }
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>

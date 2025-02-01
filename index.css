@@ -11,6 +11,9 @@ body {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align items horizontally */
   background-color: white;
   padding: 20px;
   border-radius: 10px;
@@ -38,6 +41,7 @@ body {
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
+  max-width: 300px; /* Add a max-width to center the input box */
 }
 
 .input {

@@ -18,6 +18,7 @@ body {
   width: 100%;
   max-width: 400px;
   margin-bottom: 20px;
+  text-align: center;  /* Center-align text in card */
 }
 
 .card h2 {
@@ -41,6 +42,7 @@ body {
 
 .input {
   border: 1px solid #ddd;
+  text-align: center; /* Ensures text inside input is centered */
 }
 
 .button {
@@ -77,4 +79,8 @@ th {
 
 .mt-4 {
   margin-top: 20px;
+}
+
+input[type="number"] {
+  text-align: center; /* Make sure input text is centered */
 }
